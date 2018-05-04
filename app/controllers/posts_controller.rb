@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :auth_actions, only: [:update, :create]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+    authorize @posts 
   end
 
   # GET /posts/1
@@ -15,6 +17,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    # @post = current_user.posts.build
   end
 
   # GET /posts/1/edit
@@ -26,6 +29,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    # @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -63,6 +67,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def auth_actions
+    authorize @post 
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])

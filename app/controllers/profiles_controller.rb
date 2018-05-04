@@ -1,10 +1,13 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :auth_actions, only: [:update, :create]
+  
 
   # GET /profiles
   # GET /profiles.json
   def index
     @profiles = Profile.all
+    authorize @profiles 
   end
 
   # GET /profiles/1
@@ -63,6 +66,9 @@ class ProfilesController < ApplicationController
   end
 
   private
+  def auth_actions
+    authorize @profile
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = Profile.find(params[:id])

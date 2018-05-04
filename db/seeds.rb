@@ -16,8 +16,17 @@ user = User.create!({
     password: "password123",
 }) { |u| p u.encrypted_password }
 
-Image.create!([
+profile = Profile.create!([
+    username: "beerlover",
+    bio: "Love lots of beer, happy to share and try new things",
+    location: "3001",
+    image_data: "https://www.ruegen.com.au/static/media/profile_512.1cab04f0.jpg",
+    user_id: 1
+ ])   { |pr| p pr.user }
+
+post = Post.create!([
+    title: "Testing with seed",
     image_data: "http://static.wixstatic.com/media/9059c663ff406ee7a8cc4b8b2048c783.jpg/v1/fill/w_784,h_523,al_c,q_90,usm_0.66_1.00_0.01/9059c663ff406ee7a8cc4b8b2048c783.webp",
     description: "A Siberian Husky",
-    user: user
-]) { |i| p i.user }
+    user_id: 1
+]) { |po| p po.user }

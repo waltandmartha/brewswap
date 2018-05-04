@@ -17,7 +17,7 @@
 
 <p>
   <strong>Image data:</strong>
-  <%= @profile.image_data %>
+  <%= image_tag @profile.image_data %>
 </p>
 
 <p>
@@ -60,5 +60,7 @@
   <%= @profile.user %>
 </p>
 
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<% if policy(@profile).update? %>
+              <%= link_to 'Edit', edit_profile_path(@profile) %>
+            <% end %> |
 <%= link_to 'Back', profiles_path %>
