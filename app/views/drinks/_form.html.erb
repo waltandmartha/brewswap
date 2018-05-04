@@ -1,0 +1,52 @@
+<%= form_with(model: drink, local: true) do |form| %>
+  <% if drink.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(drink.errors.count, "error") %> prohibited this drink from being saved:</h2>
+
+      <ul>
+      <% drink.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :drink_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount_in_ml %>
+    <%= form.text_field :amount_in_ml, id: :drink_amount_in_ml %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_bottles_available %>
+    <%= form.text_field :number_of_bottles_available, id: :drink_number_of_bottles_available %>
+  </div>
+
+  <div class="field">
+    <%= form.label :beer_type %>
+    <%= form.text_area :beer_type, id: :drink_beer_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :main_ingredient %>
+    <%= form.text_area :main_ingredient, id: :drink_main_ingredient %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postcode %>
+    <%= form.text_field :postcode, id: :drink_postcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_id %>
+    <%= form.text_field :post_id, id: :drink_post_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
