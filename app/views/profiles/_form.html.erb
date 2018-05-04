@@ -31,15 +31,7 @@
     <%= form.text_area :image_data, id: :profile_image_data %>
   </div>
 
-  <div class="field">
-    <%= form.label :latitude %>
-    <%= form.text_field :latitude, id: :profile_latitude %>
-  </div>
 
-  <div class="field">
-    <%= form.label :longitude %>
-    <%= form.text_field :longitude, id: :profile_longitude %>
-  </div>
 
   <div class="field">
     <%= form.label :street_address %>
@@ -63,7 +55,7 @@
 
   <div class="field">
     <%= form.label :country_code %>
-    <%= form.text_field :country_code, id: :profile_country_code %>
+    <%= form.country_select :country_code, priority_countries: ["AU", "NZ"], prompt: "Select a Country" %>
   </div>
 
   <div class="actions">

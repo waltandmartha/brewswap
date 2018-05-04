@@ -16,6 +16,7 @@ gem 'shrine', '~> 2.11'
 gem 'omniauth', '~> 1.8', '>= 1.8.1'
 gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'ausburbs'
+gem 'country_select'
 
 
 
