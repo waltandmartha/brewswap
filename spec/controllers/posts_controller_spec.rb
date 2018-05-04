@@ -137,5 +137,4 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to redirect_to(posts_url)
     end
   end
-
 end
