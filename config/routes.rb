@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
  
 
+  resources :payments
+  resources :memberships
   get 'pages/index'
   # post 'profiles/index'
   # patch 'profiles/index'

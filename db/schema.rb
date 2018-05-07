@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504060329) do
+ActiveRecord::Schema.define(version: 20180507071204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,24 @@ ActiveRecord::Schema.define(version: 20180504060329) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_drinks_on_post_id"
     t.index ["user_id"], name: "index_drinks_on_user_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.date "expiry"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal "amount"
+    t.bigint "membership_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["membership_id"], name: "index_payments_on_membership_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -77,6 +95,9 @@ ActiveRecord::Schema.define(version: 20180504060329) do
 
   add_foreign_key "drinks", "posts"
   add_foreign_key "drinks", "users"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "payments", "memberships"
+  add_foreign_key "payments", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"
 end
