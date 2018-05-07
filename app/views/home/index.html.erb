@@ -1,2 +1,11 @@
-<h1>Home#index</h1>
+<h1>BREWSWAP</h1>
+
+
+<%= link_to 'Swap Beer', new_post_path(@post) %>
+<%= link_to 'Create Profile', new_profile_path(@profile)%>
+
+<%= link_to 'Update Profile', edit_profile_path(current_user.id)%>
+
+<%= link_to 'View beers available', posts_path %>
+
 <p>Find me in app/views/home/index.html.erb</p>

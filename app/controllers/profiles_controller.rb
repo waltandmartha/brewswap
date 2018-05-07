@@ -1,7 +1,9 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :auth_actions, only: [:update, :create]
+  before_action :auth_actions, only: [:update, :edit, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_profile_presence, only: [:new, :create]
+
   
   # GET /profiles
   # GET /profiles.json
@@ -62,14 +64,26 @@ class ProfilesController < ApplicationController
   def destroy
     @profile.destroy
     respond_to do |format|
-      format.html { redirect_to profiles_url, notice: 'Profile was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Profile was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+  def check_profile_presence 
+    # @profile = Profile.current_user
+    # @profile = Profile.find(params[:id])
+    #  if Profile.params[:id]!= nil redirect_to profile_path
+    if Profile.exists? redirect_to root_url, notice: 'Profile already exists for this account.'
+    # end
+    # if @profile.user != current_user
+      # redirect_to root_url 
+    end 
+  end
+
   def auth_actions
-    # authorize @profile
+    authorize @profile
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
@@ -80,4 +94,5 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(:username, :bio, :location, :image, :street_address, :city, :postcode, :state, :country_code, :user_id, :latitude, :longitude)
     end
-end
+
+end 

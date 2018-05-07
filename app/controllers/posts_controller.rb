@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :auth_actions, only: [:update, :create]
+  before_action :auth_actions, only: [:update, :edit, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
-    authorize @posts 
+    authorize @posts
   end
 
   # GET /posts/1
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     # @post = current_user.posts.new(post_params)
-
+    authorize @post
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   private
 
   def auth_actions
-    authorize @post 
+   authorize @post 
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -79,6 +79,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :image_data)
+      params.require(:post).permit(:title, :description, :image)
     end
 end

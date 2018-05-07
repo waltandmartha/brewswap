@@ -12,18 +12,15 @@
 
 <p>
   <strong>Image data:</strong>
-  <%= image_tag @post.image_data %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
+  <%= image_tag @post.image_display(:thumb) %>
 </p>
 
 <%# <p>
   <strong>Profile:</strong>
   <%= @post.profile %>
 <%# </p> %>
+
+
 
   <% if policy(@post).update? %>
     <%= link_to 'Edit', edit_post_path(@post) %> |

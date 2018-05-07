@@ -1,10 +1,14 @@
 class PostPolicy < ApplicationPolicy
 
-    def create?
-      user == record.user
-    end
+  def index?
+    true
+  end  
   
-    def update?
-      create?
-    end
+  def create?
+      user == record.user
   end
+  
+  def update?
+    create?
+  end
+end

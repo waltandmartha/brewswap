@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :profiles
   resources :posts
   devise_for :users
+  get 'profiles/edit'
+  get 'profiles/show'
 
   get '/tables', to: 'tables#all_tables' 
   get '/tables/table/:table_name', to: 'tables#table', as: 'table'

@@ -22,15 +22,30 @@
   </div>
 
   <div class="field">
-    <%= form.label :image_data %>
-    <%= form.text_area :image_data, id: :post_image_data %>
+    <%= form.label :image %>
+    <%= form.hidden_field :image, value: @post.cached_image_data %>
+    <%= form.file_field :image %>
   </div>
-
+  
+<%= form_for Drink.new do |form| %>
   <div class="field">
-    <%= form.label :profile_id %>
-    <%= form.text_field :profile_id, id: :post_profile_id %>
-  </div>
+    <%= form.label "Add drink details:" %>
+    <div id="drink_details">
+      <%= render 'partials/drink_details', form: form %>
+    </div>
+</div>
+<% end %>
 
+
+  <%# <%= form_for @post do |post_form| %>
+  <%# <%= post_form.fields_for :drink do |drink_fields| %> 
+    <%# Amount in ml per bottle : <%= drink_fields.text_field :amount_in_ml %> 
+    <%# Number of bottles available: <%= drink_fields.text_field :number_of_bottles_available %> 
+    <%# Beer type: <%= drink_fields.text_field :beer_type %> 
+    <%# Main ingredient: <%= drink_fields.text_field :main_ingredient %>
+    <%# Postcode: <%= drink_fields.text_field :postcode %>
+  <%# <% end %>
+<%# <% end %> 
   <div class="actions">
     <%= form.submit %>
   </div>
