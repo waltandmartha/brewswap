@@ -17,6 +17,9 @@ gem 'omniauth', '~> 1.8', '>= 1.8.1'
 gem 'omniauth-google-oauth2', '~> 0.5.3'
 gem 'ausburbs'
 gem 'country_select'
+gem "image_processing", "~> 1.0"
+gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+
 
 
 

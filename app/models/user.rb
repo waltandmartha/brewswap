@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable #omniauth_providers: [:google]
   has_one :profile
   has_many :posts
-  has_and_belongs_to_many :messages 
-  has_one :membership
-  has_many :reviews
-  has_many :followers
+  # has_and_belongs_to_many :messages 
+  # has_one :membership
+  # has_many :reviews
+  # has_many :followers
 end

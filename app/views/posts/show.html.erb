@@ -12,7 +12,7 @@
 
 <p>
   <strong>Image data:</strong>
-  <%= @post.image_data %>
+  <%= image_tag @post.image_data %>
 </p>
 
 <p>
@@ -20,10 +20,10 @@
   <%= @post.user %>
 </p>
 
-<p>
+<%# <p>
   <strong>Profile:</strong>
   <%= @post.profile %>
-</p>
+<%# </p> %>
 
   <% if policy(@post).update? %>
     <%= link_to 'Edit', edit_post_path(@post) %> |

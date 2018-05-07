@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
   before_action :auth_actions, only: [:update, :create]
+  before_action :authenticate_user!, except: [:index, :show]
   
-
   # GET /profiles
   # GET /profiles.json
   def index
@@ -45,6 +45,8 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1.json
   def update
     respond_to do |format|
+      puts "PROFILE_PARAMS"
+      puts profile_params
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
@@ -67,15 +69,15 @@ class ProfilesController < ApplicationController
 
   private
   def auth_actions
-    authorize @profile
+    # authorize @profile
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find(params[:id])
+     @profile = Profile.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:username, :bio, :location, :image_data, :latitude, :longitude, :street_address, :city, :postcode, :state, :country_code, :user_id)
+      params.require(:profile).permit(:username, :bio, :location, :image, :street_address, :city, :postcode, :state, :country_code, :user_id, :latitude, :longitude)
     end
 end
