@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
  
+  get 'pages/home'
+
+  get 'pages/contact'
+
   resources :charges
   resources :payments
   resources :memberships
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'profiles/edit'
   get 'profiles/show'
+  post '/contact', to: 'pages#contact_email'
   
   get '/tables', to: 'tables#all_tables' 
   get '/tables/table/:table_name', to: 'tables#table', as: 'table'
