@@ -1,5 +1,5 @@
-# class Membership < ApplicationRecord
-#   belongs_to :user
+class Membership < ApplicationRecord
+  belongs_to :user
 #   validates :name,  presence: true, uniqueness: true
 #   validates :price, presence: true, numericality: { greater_than: 0 }
  
@@ -26,4 +26,4 @@
 #       self.digits ||= number.to_s.length <= 4 ? number : number.to_s.slice(-4..-1)
 #     end
 #   end
-# end
+end

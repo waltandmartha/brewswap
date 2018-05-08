@@ -1,45 +1,25 @@
-# class ChargesController < ApplicationController
-#     before_action :authenticate_user!
-#     before_action :find_product
-#     before_actoin :set_membership, only: [:show, :edit, :update, :destroy, :charge]
+class ChargesController < ApplicationController
+    def new
+    end
     
-#     def create
-#       stripe_card_id =
-#         if params[:credit_card].present?
-#           CreditCardService.new(current_user.id, card_params).create_credit_card
-#         else
-#           charge_params[:card_id]
-#         end
+    def create
+      # Amount in cents
+      @amount = 500
     
-#       Stripe::Charge.create(
-#         customer: current_user.customer_id,
-#         source:   stripe_card_id,
-#         amount:   @product.price_in_cents,
-#         currency: 'aud'
-#       )
+      customer = Stripe::Customer.create(
+        :email => params[:stripeEmail],
+        :source  => params[:stripeToken]
+      )
     
-#       if params[:credit_card].present? && stripe_card_id
-#         current_user.credit_cards.create_with(card_params).find_or_create_by(stripe_id: stripe_card_id)
-#       end
-#     rescue Stripe::CardError => e
-#       flash[:error] = e.message
-#       redirect_to @product
-#     end
+      charge = Stripe::Charge.create(
+        :customer    => customer.id,
+        :amount      => @amount,
+        :description => 'Rails Stripe customer',
+        :currency    => 'usd'
+      )
     
-#     private
-    
-#     def card_params
-#       params.require(:credit_card).permit(:number, :month, :year, :cvc)
-#     end
-    
-#     def charge_params
-#       params.require(:charge).permit(:card_id)
-#     end
-    
-#     def find_product
-#       @product = Product.find(params[:product_id])
-#     rescue ActiveRecord::RecordNotFound => e
-#       flash[:error] = 'Product not found!'
-#       redirect_to root_path
-#     end
-#   end
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to new_charge_path
+    end
+end
