@@ -12,9 +12,14 @@ class ProfilesController < ApplicationController
     authorize @profiles 
   end
 
+def user
+  user = current_user
+end 
+
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    @profile = Profile.find(params[:id])
   end
 
   # GET /profiles/new

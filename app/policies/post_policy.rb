@@ -5,10 +5,18 @@ class PostPolicy < ApplicationPolicy
   end  
   
   def create?
-      user == record.user
+    user.present?
+  end
+
+  def update?
+    true if user.present? && user == record.user 
   end
   
-  def update?
-    create?
-  end
+  # def create?
+  #     user == record.user
+  # end
+  
+  # def update?
+  #   create?
+  # end
 end

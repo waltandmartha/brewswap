@@ -2,6 +2,7 @@
 
 <h1>Posts</h1>
 
+<% unless @posts.nil? %>
 <table>
   <thead>
     <tr>
@@ -21,18 +22,15 @@
         <td><%= post.description %></td>
         <td><%= post.image_data %></td>
         <td><%= post.user %></td>
-        <td><%= post.profile %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><% if policy(@post).update? %>
-              <%= link_to 'Edit', edit_post_path(@post) %> |
+        <td><%= link_to 'View user profile', profile_path(post.user_id) %> </td>  
+        <td><%= link_to 'View post', post %></td>
+
             <% end %>
-        </td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+ 
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Post', new_post_path %>

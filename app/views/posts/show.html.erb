@@ -11,8 +11,10 @@
 </p>
 
 <p>
+<% unless @post.image_data.nil? %>
   <strong>Image data:</strong>
-  <%= image_tag @post.image_display(:thumb) %>
+  <%= image_tag @post.image_url(:medium) %>
+<%end %>
 </p>
 
 <%# <p>
@@ -26,3 +28,8 @@
     <%= link_to 'Edit', edit_post_path(@post) %> |
   <% end %>
 <%= link_to 'Back', posts_path %>
+
+<td><%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+

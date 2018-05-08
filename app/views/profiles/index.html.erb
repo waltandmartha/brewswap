@@ -37,9 +37,7 @@
         <td><%= profile.country_code %></td>
         <td><%= profile.user %></td>
         <td><%= link_to 'Show', profile %></td>
-                <td><% if policy(@profile).update? %>
-              <%= link_to 'Edit', edit_profile_path(@profile) %> |
-            <% end %>
+
         </td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -49,4 +47,4 @@
 
 <br>
 
-<%= link_to 'New Profile', new_profile_path %>
+<%# <%= link_to 'New Profile', new_profile_path %> 
