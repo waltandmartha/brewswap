@@ -26,16 +26,15 @@
     <%= form.hidden_field :image, value: @post.cached_image_data %>
     <%= form.file_field :image %>
   </div>
-  
-<%= form_for Drink.new do |form| %>
-  <div class="field">
-    <%= form.label "Add drink details:" %>
-    <div id="drink_details">
-      <%= render 'partials/drink_details', form: form %>
-    </div>
-</div>
+
+  <%= render 'partials/drink_details', form: form, drink: @drink %>
+
 <% end %>
 
+
+    <%# <div class="actions">
+    <%= form.submit %>
+  </div>  %>
 
   <%# <%= form_for @post do |post_form| %>
   <%# <%= post_form.fields_for :drink do |drink_fields| %> 
@@ -46,7 +45,7 @@
     <%# Postcode: <%= drink_fields.text_field :postcode %>
   <%# <% end %>
 <%# <% end %> 
-  <div class="actions">
+  <%# <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
+

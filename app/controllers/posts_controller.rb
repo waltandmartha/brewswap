@@ -1,8 +1,23 @@
-class PostsController < ApplicationController
-  # before_action :set_post, only: [:show, :edit, :update, :destroy]
-  # before_action :auth_actions, only: [:update, :edit, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+require 'drinks_controller.rb'
 
+class PostsController < DrinksController
+  def set_details        
+    DrinksController.get_details(data)
+  end
+    #  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  #  before_action :auth_actions, only: [:update, :edit, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  skip_before_action :verify_authenticity_token  
+
+
+  def action_that_calls_one_from_another_controller
+    drinks_controller = DrinksController.new
+    drinks_controller.request = request
+    drinks_controller.response = response
+    drinks_controller.create 
+   
+  end
+  
   # GET /posts
   # GET /posts.json
   def index
@@ -14,7 +29,10 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @drink = Drink.last
   end
+
+
 
   # GET /posts/new
   def new
@@ -29,13 +47,23 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
-    # @post = current_user.posts.new(post_params)
-    authorize @post
+    post = Post.new(post_params)
+    drink = Drink.new
+    # action_that_calls_one_from_another_controller
+    drink.amount_in_ml = params[:amount_in_ml]
+    drink.beer_type = params[:beer_type]
+    drink.number_of_bottles_available = params[:number_of_bottles_available]
+    drink.postcode = params[:postcode]
+    drink.main_ingredient = params[:main_ingredient]
+    
+    drink.user = current_user
+    post.drink = drink
+    post.user = current_user
+    
+    # authorize @post
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+      if post.save && drink.save
+        format.html { redirect_to post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
@@ -61,7 +89,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post =Posts.find(params[:id])
+    @post = Posts.find(params[:id])
     if @post.present?
       @post.destroy
     end
@@ -75,7 +103,7 @@ class PostsController < ApplicationController
   private
 
   def auth_actions
-  #  authorize @post 
+   authorize @post 
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -84,6 +112,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :image)
+      params.require(:post).permit(:title, :description, :image, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode, :post_id, :user_id)
     end
 end

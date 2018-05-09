@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   devise_for :users
   get 'profiles/edit'
   get 'profiles/show'
-  post '/contact', to: 'pages#contact_email'
-  
+  get 'posts/new'
+  post 'pages/contact', to: 'pages#contact_email'
+  post 'posts', to: 'posts#post' 
   get '/tables', to: 'tables#all_tables' 
   get '/tables/table/:table_name', to: 'tables#table', as: 'table'
 

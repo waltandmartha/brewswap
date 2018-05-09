@@ -1,7 +1,9 @@
 class PagesController < ApplicationController
-  before_action :authenitcate_user!, except: [:home]
+  before_action :authenticate_user!, except: [:home]
   def index
   end
+
+  
 
   def contact_email
     user = current_user
