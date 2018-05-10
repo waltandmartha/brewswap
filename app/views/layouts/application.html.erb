@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Beerswap</title>
+    <title>BREWSWAP</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <link rel="stylesheet" href="app/assets/stylesheets/application.scss">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT-Sans' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="favicon1.png"> 
   </head>
 
 
@@ -14,12 +20,12 @@
 
 
     <body>
+    
     <%= render 'partials/header'%>
 
     
   <main>
-      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      
     <%= yield %>
   </main>
 

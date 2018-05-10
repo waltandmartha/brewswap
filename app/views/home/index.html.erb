@@ -1,18 +1,23 @@
 <h1>BREWSWAP</h1>
 
 
-<%= link_to 'Swap Beer', new_post_path(@post) %>
+ <div>
+ <%# <%= image: ("Brewswap-logo-final.png", class: "logo", alt: "Logo") %>  
+<%= image_tag("Brewswap-logo-final.png", class: "logo", alt: "Logo") %>
+    <%# <img src="images/Brewswap-logo-final.png" alt="Brewswap logo"> %>
+</div>
+<%= link_to 'SWAP BEER', new_post_path(@post) %>
 <% if user_signed_in? %>
     <% if current_user.profile == nil %>
-        <%= link_to 'Create Profile', new_profile_path(@profile) %>
-        <%= link_to 'Upgrade membership', memberships_path %>
+        <%= link_to 'CREATE PROFILE', new_profile_path(@profile) %>
+        <%= link_to 'UPGRADE MEMBERSHIP', memberships_path %>
     <% else %>
-        <%= link_to 'Update Profile', edit_profile_path(current_user.profile.id) %>
-        <%= link_to 'Upgrade membership', memberships_path %>
+        <%= link_to 'UPDATE PROFILE', edit_profile_path(current_user.profile.id) %>
+        <%= link_to 'UPGRADE MEMBERSHIP', memberships_path %>
     <% end %>
 <% end %>
 
-<%= link_to 'View beers available', posts_path %>
+<%= link_to 'VIEW BEERS AVAILABLE', posts_path %>
 
 
 

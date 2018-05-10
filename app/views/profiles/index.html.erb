@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Profiles</h1>
+<h1>PROFILES</h1>
 
 <table>
   <thead>
@@ -32,6 +32,8 @@
         
           <%# <% end %> 
         
+  
+
         <td><%= profile.latitude %></td>
         <td><%= profile.longitude %></td>
         <td><%= profile.street_address %></td>
@@ -40,10 +42,10 @@
         <td><%= profile.state %></td>
         <td><%= profile.country_code %></td>
         <td><%= profile.user %></td>
-        <td><%= link_to 'Show', profile %></td>
+        <td><%= link_to 'SHOW', profile %></td>
 
         </td>
-        <td><%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
       </tr>
     <% end %>
   </tbody>

@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     authorize @posts
+    username = Profile.last
   end
 
   # GET /posts/1
@@ -124,7 +125,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :image, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode)
+      params.require(:post).permit(:title, :description, :image, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode, :user_id)
     end
 
     def drink_params

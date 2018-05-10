@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
+<style>
+body {
+background-image: url("twobeers.png")
+}
+</style>
+<h1>POSTS</h1>
 
 <% unless @posts.nil? %>
 <table>
@@ -20,14 +24,13 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.description %></td>
-        <% unless post.image_data.nil? %>
-        <td><%= image_tag post.image_url(:thumb) %></td>
+        <%# <% unless post.image_data.nil? %> 
+        <td><%= image_tag post.image_display(:thumb) %></td>
         
-        <% end %>
-        
-        <td><%= post.user %></td>
-        <td><%= link_to 'View user profile', profile_path(post.user_id) %> </td>  
-        <td><%= link_to 'View post', post %></td>
+        <%# <% end %> 
+       
+        <td><%= link_to 'VIEW USER PROFILE', profile_path(post.user_id) %> </td>  
+        <td><%= link_to 'VIEW POST', post %></td>
 
             <% end %>
  
@@ -37,4 +40,4 @@
 </table>
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to 'NEW POST', new_post_path %>

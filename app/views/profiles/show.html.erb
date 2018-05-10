@@ -61,12 +61,12 @@
 </p>
 
 <% if policy(@profile).update? %>
-              <%= link_to 'Edit', edit_profile_path(@profile) %>
+              <%= link_to 'EDIT', edit_profile_path(@profile) %>
             <% end %> 
-<%= link_to 'Back', @profile_path %>
+<%= link_to 'BACK', @profile_path %>
 
-<%= link_to 'Swap Beer', new_post_path(@post) %>
-<%= link_to 'Upgrade membership', memberships_path %>
+<%= link_to 'SWAP BEER', new_post_path(@post) %>
+<%= link_to 'UPGRADE MEMBERSHIP', memberships_path %>
 
 
-<td><%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<td><%= link_to 'DESTROY', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
