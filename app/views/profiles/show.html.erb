@@ -17,7 +17,7 @@
 
 <p>
   <strong>Image data:</strong>
-  <%= image_tag @profile.image_display(:thumb) %>
+  <%= image_tag @profile.image_display(:medium) %>
 </p>
 
 <p>
@@ -67,3 +67,6 @@
 
 <%= link_to 'Swap Beer', new_post_path(@post) %>
 <%= link_to 'Upgrade membership', memberships_path %>
+
+
+<td><%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>

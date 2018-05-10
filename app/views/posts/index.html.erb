@@ -20,7 +20,11 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.description %></td>
-        <td><%= post.image_data %></td>
+        <% unless post.image_data.nil? %>
+        <td><%= image_tag post.image_url(:thumb) %></td>
+        
+        <% end %>
+        
         <td><%= post.user %></td>
         <td><%= link_to 'View user profile', profile_path(post.user_id) %> </td>  
         <td><%= link_to 'View post', post %></td>

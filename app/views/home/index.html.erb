@@ -5,13 +5,15 @@
 <% if user_signed_in? %>
     <% if current_user.profile == nil %>
         <%= link_to 'Create Profile', new_profile_path(@profile) %>
+        <%= link_to 'Upgrade membership', memberships_path %>
     <% else %>
         <%= link_to 'Update Profile', edit_profile_path(current_user.profile.id) %>
+        <%= link_to 'Upgrade membership', memberships_path %>
     <% end %>
 <% end %>
+
 <%= link_to 'View beers available', posts_path %>
 
-<%= link_to 'Upgrade membership', memberships_path %>
 
 
 <p>Find me in app/views/home/index.html.erb</p>

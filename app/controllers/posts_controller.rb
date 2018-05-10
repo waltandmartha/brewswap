@@ -1,22 +1,22 @@
 require 'drinks_controller.rb'
 
-class PostsController < DrinksController
-  def set_details        
-    DrinksController.get_details(data)
-  end
+class PostsController < ApplicationController
+#   def set_details        
+#     DrinksController.get_details(data)
+#   end
     #  before_action :set_post, only: [:show, :edit, :update, :destroy]
   #  before_action :auth_actions, only: [:update, :edit, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
   skip_before_action :verify_authenticity_token  
 
 
-  def action_that_calls_one_from_another_controller
-    drinks_controller = DrinksController.new
-    drinks_controller.request = request
-    drinks_controller.response = response
-    drinks_controller.create 
+  # def action_that_calls_one_from_another_controller
+  #   drinks_controller = DrinksController.new
+  #   drinks_controller.request = request
+  #   drinks_controller.response = response
+  #   drinks_controller.create 
    
-  end
+  # end
   
   # GET /posts
   # GET /posts.json

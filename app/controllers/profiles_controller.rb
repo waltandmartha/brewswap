@@ -67,6 +67,7 @@ end
   # DELETE /profiles/1
   # DELETE /profiles/1.json
   def destroy
+    @profile = Profile.find(params[:id])
     @profile.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: 'Profile was successfully destroyed.' }

@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'posts/new'
   # get 'posts/show'
   post 'pages/contact', to: 'pages#contact_email'
+  post 'profiles', to: 'profiles#profile'
   post 'posts', to: 'posts#post' 
   get '/tables', to: 'tables#all_tables' 
   get '/tables/table/:table_name', to: 'tables#table', as: 'table'

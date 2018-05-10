@@ -12,13 +12,12 @@
 
 <p>
 <% unless @post.image_data.nil? %>
-  <strong>Image data:</strong>
-  <%= image_tag @post.image_url(:medium) %>
+  <strong>Image:</strong>
+  <%= image_tag @post.image_display(:medium) %>
 <%end %>
 </p>
 
     <div id="drink_post">
-      <h2>DRINK IS: <%= @drink %></h2>
       <%= render 'partials/drink_post', { drink: @drink } %>
     </div>
 

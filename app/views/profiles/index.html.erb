@@ -27,7 +27,11 @@
         <td><%= profile.username %></td>
         <td><%= profile.bio %></td>
         <td><%= profile.location %></td>
-        <td><%= profile.image_data %></td>
+          <%# <% unless profile.image_data.nil? %> 
+            <td><%= image_tag profile.image_display(:thumb) %></td>
+        
+          <%# <% end %> 
+        
         <td><%= profile.latitude %></td>
         <td><%= profile.longitude %></td>
         <td><%= profile.street_address %></td>

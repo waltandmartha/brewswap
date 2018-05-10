@@ -11,7 +11,9 @@ class Profile < ApplicationRecord
     if image_data
       image_url(args)
     else
-      "http://s.quickmeme.com/img/4d/4d56e45853983bfeedced94719e78b2869e21252c3d85105f7b56320b8f959ab.jpg"
-    end
+      "http://via.placeholder.com/80x80"
+     end
   end
 end
+
+   
