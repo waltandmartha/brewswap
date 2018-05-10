@@ -47,13 +47,13 @@ ActiveRecord::Schema.define(version: 2018050507071304) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
-  # create_table "plans", force: :cascade do |t|
-  #   t.string "stripe_id", null: false
-  #   t.string "name", null: false
-  #   t.decimal "display_price", null: false
-  #   t.datetime "created_at", null: false
-  #   t.datetime "updated_at", null: false
-  # end
+  create_table "plans", force: :cascade do |t|
+    t.string "stripe_id", null: false
+    t.string "name", null: false
+    t.decimal "display_price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.text "title"
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 2018050507071304) do
     t.text "bio"
     t.text "location"
     t.text "image_data"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.float "latitude"
+    t.float "longitude"
     t.string "street_address"
     t.string "city"
     t.string "postcode"

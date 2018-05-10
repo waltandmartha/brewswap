@@ -29,7 +29,7 @@ class PostsController < DrinksController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @drink = Drink.last
+    @drink = @post.drink
   end
 
 
@@ -37,25 +37,30 @@ class PostsController < DrinksController
   # GET /posts/new
   def new
     @post = Post.new
+    @drink = Drink.new
     # @post = current_user.posts.build
   end
 
   # GET /posts/1/edit
   def edit
+    @post = Post.find(params[:id])
+    @drink = @post.drink
+    # @post.save
+    # @drink.save
   end
 
   # POST /posts
   # POST /posts.json
   def create
     post = Post.new(post_params)
-    drink = Drink.new
+    drink = Drink.new(drink_params)
     # action_that_calls_one_from_another_controller
-    drink.amount_in_ml = params[:amount_in_ml]
-    drink.beer_type = params[:beer_type]
-    drink.number_of_bottles_available = params[:number_of_bottles_available]
-    drink.postcode = params[:postcode]
-    drink.main_ingredient = params[:main_ingredient]
-    
+    # drink.amount_in_ml = params[:amount_in_ml]
+    # drink.beer_type = params[:beer_type]
+    # drink.number_of_bottles_available = params[:number_of_bottles_available]
+    # drink.postcode = params[:postcode]
+    # drink.main_ingredient = params[:main_ingredient]
+
     drink.user = current_user
     post.drink = drink
     post.user = current_user
@@ -75,8 +80,13 @@ class PostsController < DrinksController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    @post = Post.find(params[:id])
+    @drink = Drink.find(params[:id]) 
+    # @post.drink
+    @post.save
+    @drink.save
     respond_to do |format|
-      if @post.update(post_params)
+      if @post.update(post_params) && @drink.update(drink_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -89,10 +99,12 @@ class PostsController < DrinksController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post = Posts.find(params[:id])
-    if @post.present?
+    @post = Post.find(params[:id])
+    @drink = Drink.find(params[:id])
+    @drink.destroy
+    # if @post.present?
       @post.destroy
-    end
+    # end
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
@@ -112,6 +124,10 @@ class PostsController < DrinksController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :image, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode, :post_id, :user_id)
+      params.require(:post).permit(:title, :description, :image, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode)
+    end
+
+    def drink_params
+      params.require(:drink).permit(:user_id, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode, :post_id)
     end
 end

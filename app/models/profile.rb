@@ -4,13 +4,14 @@ class Profile < ApplicationRecord
   has_many :reviews
   has_many :followers
   has_many :posts
+  has_many :drinks, through: :posts
   validates :user, presence: true
 
   def image_display(args)
     if image_data
       image_url(args)
     else
-      "https://image.shutterstock.com/z/stock-photo-beer-barrel-297253958.jpg"
+      "http://s.quickmeme.com/img/4d/4d56e45853983bfeedced94719e78b2869e21252c3d85105f7b56320b8f959ab.jpg"
     end
   end
 end

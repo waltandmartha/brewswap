@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :image %>
-    <%= form.hidden_field :image, value: @post.cached_image_data %>
+    <%= form.hidden_field :image, value: post.cached_image_data %>
     <%= form.file_field :image %>
   </div>
 
@@ -34,7 +34,7 @@
 
     <%# <div class="actions">
     <%= form.submit %>
-  </div>  %>
+  <%# </div>  %>
 
   <%# <%= form_for @post do |post_form| %>
   <%# <%= post_form.fields_for :drink do |drink_fields| %> 
@@ -47,5 +47,5 @@
 <%# <% end %> 
   <%# <div class="actions">
     <%= form.submit %>
-  </div>
+  <%# </div> %>
 

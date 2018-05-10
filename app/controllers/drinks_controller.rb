@@ -14,6 +14,7 @@ class DrinksController < ApplicationController
 
   # GET /drinks/new
   def new
+    @post = Post.new
     @drink = Drink.new
   end
 
@@ -24,8 +25,9 @@ class DrinksController < ApplicationController
   # POST /drinks
   # POST /drinks.json
   def create
-    params.require(:drink).permit(:user_id, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode, :post_id)
-    @drink = Drink.new(drink_params)
+    # params.require(:drink).permit(:user_id, :amount_in_ml, :number_of_bottles_available, :beer_type, :main_ingredient, :postcode, :post_id)
+    @drink = Drink.new
+    @post = Post.new
 
     @drink.save 
     end
@@ -34,15 +36,17 @@ class DrinksController < ApplicationController
   # PATCH/PUT /drinks/1
   # PATCH/PUT /drinks/1.json
   def update
-    respond_to do |format|
-      if @drink.update(drink_params)
-        format.html { redirect_to @drink, notice: 'Drink was successfully updated.' }
-        format.json { render :show, status: :ok, location: @drink }
-      else
-        format.html { render :edit }
-        format.json { render json: @drink.errors, status: :unprocessable_entity }
-      end
-    end
+    @drink = Drink.find(params[:id])
+    @post = Post.find(params[:id])
+    # respond_to do |format|
+      # if @drink.update(drink_params)
+      #   format.html { redirect_to @drink, notice: 'Drink was successfully updated.' }
+      #   format.json { render :show, status: :ok, location: @drink }
+      # else
+      #   format.html { render :edit }
+      #   format.json { render json: @drink.errors, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   def self.get_details(data)

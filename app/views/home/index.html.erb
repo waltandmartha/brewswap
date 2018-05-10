@@ -2,12 +2,13 @@
 
 
 <%= link_to 'Swap Beer', new_post_path(@post) %>
-<%= link_to 'Create Profile', new_profile_path(@profile) %>
-
 <% if user_signed_in? %>
-<%= link_to 'Update Profile', edit_profile_path(current_user.id) %>
+    <% if current_user.profile == nil %>
+        <%= link_to 'Create Profile', new_profile_path(@profile) %>
+    <% else %>
+        <%= link_to 'Update Profile', edit_profile_path(current_user.profile.id) %>
+    <% end %>
 <% end %>
-
 <%= link_to 'View beers available', posts_path %>
 
 <%= link_to 'Upgrade membership', memberships_path %>

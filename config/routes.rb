@@ -10,15 +10,18 @@ Rails.application.routes.draw do
   get 'pages/index'
   # post 'profiles/index'
   # patch 'profiles/index'
-  resources :drinks
   get 'home/index'
   root "home#index"
   resources :profiles
   resources :posts
+  resources :drinks
   devise_for :users
   get 'profiles/edit'
-  get 'profiles/show'
+  get 'profiles/show' 
+  get 'profiles/new'
+  # delete 'profiles/id', to: 'profiles#destroy'
   get 'posts/new'
+  # get 'posts/show'
   post 'pages/contact', to: 'pages#contact_email'
   post 'posts', to: 'posts#post' 
   get '/tables', to: 'tables#all_tables' 

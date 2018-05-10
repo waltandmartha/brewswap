@@ -1,34 +1,34 @@
 <%= form_with model: drink do |form| %>
 
   <div class="field">
-    <%= form.label 'Amount in ml per bottle:' %>
-    <%= form.text_field :amount_in_ml %>
+    <%= form.label :amount_in_ml %>
+    <%= form.text_field :amount_in_ml, value: drink.amount_in_ml %>
   </div>
 
   <div class="field">
-    <%= form.label 'Number of bottles available:' %>
+    <%= form.label :number_of_bottles_available %>
     <%= form.text_field :number_of_bottles_available %>
   <%# <% select :method, %w(Cash Credit Check) %> 
   </div>
 
   <div class="field">
-      <%= form.label 'Beer type' %>
-      <%= form.text_field :beer_type, id: :drink_beer_type %>
-    </div>
+    <%= form.label 'Beer type' %>
+    <%= form.text_field :beer_type, id: :drink_beer_type %>
+  </div>
 
-    <div class="field">
-      <%= form.label :main_ingredient %>
-      <%= form.text_area :main_ingredient, id: :drink_main_ingredient %>
-    </div>
+  <div class="field">
+    <%= form.label :main_ingredient %>
+    <%= form.text_area :main_ingredient, id: :drink_main_ingredient %>
+  </div>
 
-    <div class="field">
-      <%= form.label :postcode %>
-      <%= form.text_field :postcode, id: :drink_postcode %>
-    </div>
+  <div class="field">
+    <%= form.label :postcode %>
+    <%= form.text_field :postcode, id: :drink_postcode %>
+  </div>
 
 
-    <div class="actions">
-      <%= form.submit %>
-    </div> 
+  <div class="actions">
+    <%= form.submit %>
+  </div> 
 
 <% end %>

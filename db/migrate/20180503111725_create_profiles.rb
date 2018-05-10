@@ -5,8 +5,8 @@ class CreateProfiles < ActiveRecord::Migration[5.1]
       t.text :bio
       t.text :location
       t.text :image_data
-      t.decimal :latitude
-      t.decimal :longitude
+      t.float :latitude
+      t.float :longitude
       t.string :street_address
       t.string :city
       t.string :postcode
